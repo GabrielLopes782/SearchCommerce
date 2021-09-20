@@ -10,5 +10,9 @@ package services;
  * @author Thiago Quevedo
  */
 public class ServicesFactory {
+    private static final loginServices loginServices = new loginServices();  
     
+    public static loginServices getLoginServices(){
+        return loginServices;
+    }
 }

@@ -5,10 +5,16 @@
  */
 package dao;
 
+import model.loginVO;
+
 /**
  *
  * @author Thiago Quevedo
  */
 public class DAOFactory {
+    private static final LoginDAO loginDAO = new LoginDAO();
     
+    public static LoginDAO getLoginDAO(){
+        return loginDAO;
+    }
 }
