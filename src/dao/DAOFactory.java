@@ -5,6 +5,7 @@
  */
 package dao;
 
+import cryptography.Encryptions;
 import model.loginVO;
 
 /**
@@ -13,8 +14,12 @@ import model.loginVO;
  */
 public class DAOFactory {
     private static final LoginDAO loginDAO = new LoginDAO();
+    private static final cryptography.Encryptions encrypt = new Encryptions();
     
     public static LoginDAO getLoginDAO(){
         return loginDAO;
+    }
+    public static Encryptions getEncrypt(){
+        return encrypt;
     }
 }

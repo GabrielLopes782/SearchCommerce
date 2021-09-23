@@ -5,6 +5,7 @@
  */
 package services;
 
+import cryptography.Encryptions;
 import dao.LoginDAO;
 import java.sql.SQLException;
 import model.loginVO;
@@ -14,9 +15,22 @@ import model.loginVO;
  * @author Thiago Quevedo
  */
 public class loginServices {
-    public static LoginDAO cDAO = dao.DAOFactory.getLoginDAO();
+    private LoginDAO cDAO = dao.DAOFactory.getLoginDAO();
+    private Encryptions encrypt = dao.DAOFactory.getEncrypt();
     
     public void cadastraUsuario (loginVO lVO) throws SQLException{
          cDAO.cadastrarUsuario(lVO);
+    }
+    
+    public void verificaUsuario (loginVO lVO) throws SQLException{
+        cDAO.verificaLogin(lVO);
+    }
+    
+    public String geraHash(String dado) throws Exception{
+        return encrypt.geraHash(dado);
+    }
+    
+    public void criptografaHash(String dado){
+        encrypt.criptografaHash(dado);
     }
 }
