@@ -47,32 +47,5 @@ public class Encryptions {
         return texto.toString();
     }
 
-    public void criptografaHash(String hash) {
-
-        try {
-            KeyGenerator gerador = KeyGenerator.getInstance("DES");
-            SecretKey chaveDES = gerador.generateKey();
-            Cipher desCipher;
-
-            //Criação do cipher que conterá os objetos de criptografia
-            desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-
-            // Iniciando cipher para criptografia
-            desCipher.init(Cipher.ENCRYPT_MODE, chaveDES);
-
-            // Excriptando os dados
-            byte[] hashCriptografado = desCipher.doFinal(hash.getBytes());
-            System.out.println(new String(hashCriptografado));
-            
-            
-            desCipher.init(Cipher.DECRYPT_MODE, chaveDES);
-            // Texto a ser descriptografado
-            byte[] textoDescriptografado = desCipher.doFinal(hashCriptografado);
-            System.out.println(textoDescriptografado);
-
-        } catch (InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-        }
-    }
+    
 }

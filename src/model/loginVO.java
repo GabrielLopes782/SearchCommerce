@@ -32,4 +32,12 @@ public class loginVO {
     public void setSenha(String senha) throws Exception {
         this.senha = encrypt.geraHash(senha);
     }
+
+    public loginVO(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+
+    public loginVO() {
+    }
 }

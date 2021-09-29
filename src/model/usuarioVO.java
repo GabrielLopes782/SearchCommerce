@@ -10,7 +10,24 @@ package model;
  * @author Thiago Quevedo
  */
 public class usuarioVO {
-    private String nome, endereco, telefone, email;
+    private static int idUsuario, idLogin;
+    private static String nome, endereco, telefone, email;
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+    
+    public void setIdUsuario(int idUsuario) {
+        usuarioVO.idUsuario = idUsuario;
+    }
+
+    public int getIdLogin() {
+        return idLogin;
+    }
+
+    public void setIdLogin(int idLogin) {
+        usuarioVO.idLogin = idLogin;
+    }
 
     public String getNome() {
         return nome;
@@ -43,6 +60,15 @@ public class usuarioVO {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
+    public usuarioVO(int idUsuario, String nome, String endereco, String telefone, String email) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public usuarioVO() {
+    }
 }
