@@ -5,22 +5,24 @@
  */
 package model;
 
-import java.security.MessageDigest;
+import services.loginServices;
+
 
 /**
  *
  * @author Thiago Quevedo
  */
+
 public class loginVO {
-
+    private final loginServices encrypt = services.ServicesFactory.getLoginServices();
     private String usuario, senha;
-
+    
     public String getUsuario() {
         return usuario;
     }
 
     public void setUsuario(String usuario) throws Exception {
-        this.usuario = geraHashUsuario(usuario);
+        this.usuario = encrypt.geraHash(usuario.toLowerCase());
     }
 
     public String getSenha() {
@@ -28,27 +30,14 @@ public class loginVO {
     }
 
     public void setSenha(String senha) throws Exception {
-        this.senha = geraHashSenha(senha);
+        this.senha = encrypt.geraHash(senha);
     }
 
-    public static String geraHashUsuario(String usuario) throws Exception {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-        byte hash[] = algorithm.digest(usuario.getBytes("UTF-8"));
-
-        StringBuilder texto = new StringBuilder();
-        for (byte b : hash) {
-            texto.append(String.format("%02X", 0xFF & b));
-        }
-        return texto.toString();
+    public loginVO(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
     }
-    public static String geraHashSenha(String senha) throws Exception {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-        byte hash[] = algorithm.digest(senha.getBytes("UTF-8"));
 
-        StringBuilder texto = new StringBuilder();
-        for (byte b : hash) {
-            texto.append(String.format("%02X", 0xFF & b));
-        }
-        return texto.toString();
+    public loginVO() {
     }
 }

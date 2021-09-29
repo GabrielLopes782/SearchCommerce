@@ -11,8 +11,13 @@ package services;
  */
 public class ServicesFactory {
     private static final loginServices loginServices = new loginServices();  
+    private static final usuarioServices userServices = new usuarioServices();
     
     public static loginServices getLoginServices(){
         return loginServices;
+    }
+    
+    public static usuarioServices getUserServices(){
+        return userServices;
     }
 }

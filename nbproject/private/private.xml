@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/cryptography/Encryptions.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/searchcommerce/SearchCommerce.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/dao/LoginDAO.java</file>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/model/usuarioVO.java</file>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/model/loginVO.java</file>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/dao/UsuarioDAO.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/services/ServicesFactory.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/persistencia/Conexao.java</file>
-            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/model/mLoginDAO.java</file>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/services/usuarioServices.java</file>
+            <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/services/loginServices.java</file>
         </group>
         <group name="NetBeansProjects">
             <file>file:/D:/NetBeansProjects/SearchCommerce/src/model/ProdutoVO.java</file>

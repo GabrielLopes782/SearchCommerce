@@ -16,25 +16,36 @@ import services.loginServices;
  * @author Thiago Quevedo
  */
 public class SearchCommerce {
-
+    public static boolean userLogin = false;
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         try {
             Scanner ler = new Scanner(System.in);
             loginVO mL = new loginVO();
             loginServices logS = services.ServicesFactory.getLoginServices();
+            System.out.println("------LOGIN------");
+            System.out.println("Usuário: ");
             mL.setUsuario(ler.nextLine());
+            System.out.println("Senha: ");
             mL.setSenha(ler.nextLine());
-            System.out.println(mL.getUsuario());
-            System.out.println(mL.getSenha());
-            logS.cadastraUsuario(mL);
-            
+            logS.verificaSenha(mL.getSenha());
+//            logS.verificaUsuario(mL);
+//            if(userLogin){
+//                System.out.println("Deu certo");
+//                System.out.println(mL.getUsuario());
+//                System.out.println(mL.getSenha());
+//            } else {
+//                System.out.println("Deu errado");
+//            }
+//            logS.cadastraLogin(mL);
+
+
         } catch (Exception ex) {
             Logger.getLogger(SearchCommerce.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }
