@@ -7,16 +7,15 @@ package model;
 
 import services.loginServices;
 
-
 /**
  *
  * @author Thiago Quevedo
  */
-
 public class loginVO {
+
     private final loginServices encrypt = services.ServicesFactory.getLoginServices();
     private String usuario, senha;
-    
+
     public String getUsuario() {
         return usuario;
     }

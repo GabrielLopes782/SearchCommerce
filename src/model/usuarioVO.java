@@ -10,13 +10,14 @@ package model;
  * @author Thiago Quevedo
  */
 public class usuarioVO {
+
     private static int idUsuario, idLogin;
     private static String nome, endereco, telefone, email;
 
     public int getIdUsuario() {
         return idUsuario;
     }
-    
+
     public void setIdUsuario(int idUsuario) {
         usuarioVO.idUsuario = idUsuario;
     }

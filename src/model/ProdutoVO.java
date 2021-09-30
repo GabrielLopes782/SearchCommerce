@@ -35,7 +35,6 @@ public class ProdutoVO {
         this.idCategoria = idCategoria;
     }
 
-
     public int getIdProduto() {
         return idProduto;
     }
@@ -81,5 +80,4 @@ public class ProdutoVO {
         return "ProdutoVO{" + "idProduto=" + idProduto + ", preco=" + preco + ", nomeProduto=" + nomeProduto + ", caracteristicas=" + caracteristicas + ", nomeCategoria=" + nomeCategoria + ", idCategoria=" + idCategoria + '}';
     }
 
-   
 }

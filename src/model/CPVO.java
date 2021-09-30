@@ -10,7 +10,8 @@ package model;
  * @author Menin
  */
 public class CPVO {
-   private int idCompra, idProd,qtd;
+
+    private int idCompra, idProd, qtd;
 
     public CPVO(int idCompra, int idProd, int qtd) {
         this.idCompra = idCompra;
@@ -46,5 +47,5 @@ public class CPVO {
     public String toString() {
         return "CPVO{" + "idCompra=" + idCompra + ", idProd=" + idProd + ", qtd=" + qtd + '}';
     }
-   
+
 }

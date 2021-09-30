@@ -75,16 +75,16 @@ public class ProdutoDAO {
             String sql = "update tb_produto set"
                     + "nomeProduto'" + pVO.getNomeProduto() + "','"
                     + "preco'" + pVO.getPreco() + "',"
-                    + "caracteristicas" + pVO.getCaracteristicas() + "' "+
-                    "where id_produto="+pVO.getIdCategoria()+" ";
-                    stat.executeUpdate(sql);
-        }catch(SQLException se){
-            throw new SQLException("Erro ao Alterar o Produto!"+se.getMessage());
-            
-        }finally{
+                    + "caracteristicas" + pVO.getCaracteristicas() + "' "
+                    + "where id_produto=" + pVO.getIdCategoria() + " ";
+            stat.executeUpdate(sql);
+        } catch (SQLException se) {
+            throw new SQLException("Erro ao Alterar o Produto!" + se.getMessage());
+
+        } finally {
             con.close();
             stat.close();
-            
+
         }
 
     }
