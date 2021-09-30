@@ -33,4 +33,19 @@ public class CompraDAO {
         }
 
     }
+    public void DeletarCompra(int idCompra) throws SQLException{
+        Connection con= Conexao.getConexao();
+        Statement stat=con.createStatement();
+        try{
+            String sql= "delete from tb_compra where id_compra= "+idCompra;
+            stat.execute(sql);
+        }catch(SQLException se){
+            throw new SQLException("Erro ao deletar "+se.getMessage());
+            
+        }finally{
+            con.close();
+            stat.close();
+                    
+        }
+    }
 }
