@@ -5,8 +5,14 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.loginVO;
+import services.loginServices;
 
 /**
  *
@@ -30,50 +36,166 @@ public class JfLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jtfUsuario = new javax.swing.JTextField();
+        jlSenha = new javax.swing.JLabel();
+        jlUsuario = new javax.swing.JLabel();
         jlLogin = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jcbVisualizar = new javax.swing.JCheckBox();
+        jpfSenha = new javax.swing.JPasswordField();
+        jbEntrar = new javax.swing.JButton();
+        jbLimpar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
+
+        jlSenha.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
+        jlSenha.setText("Senha:");
+        jlSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSenhaMouseClicked(evt);
+            }
+        });
+
+        jlUsuario.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
+        jlUsuario.setText("Usuário:");
+        jlUsuario.setToolTipText("");
+        jlUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlUsuarioMouseClicked(evt);
+            }
+        });
 
         jlLogin.setFont(new java.awt.Font("Cambria Math", 0, 36)); // NOI18N
         jlLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlLogin.setText("Login");
 
-        jTextField1.setText("jTextField1");
+        jcbVisualizar.setText("Visualizar");
+        jcbVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbVisualizarActionPerformed(evt);
+            }
+        });
 
-        jPasswordField1.setText("jPasswordField1");
+        jpfSenha.setEchoChar('\u25cf');
+
+        jbEntrar.setText("Entrar");
+        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEntrarActionPerformed(evt);
+            }
+        });
+
+        jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addComponent(jlLogin)
-                .addGap(205, 205, 205))
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jlLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(jlUsuario)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbVisualizar)
+                            .addComponent(jlSenha)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jpfSenha)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(33, 33, 33)
                 .addComponent(jlLogin)
-                .addGap(58, 58, 58)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jlUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jlSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbVisualizar)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbEntrar)
+                    .addComponent(jbLimpar))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jlSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSenhaMouseClicked
+        // TODO add your handling code here:
+        jpfSenha.requestFocus();
+    }//GEN-LAST:event_jlSenhaMouseClicked
+
+    private void jlUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlUsuarioMouseClicked
+        // TODO add your handling code here:
+        jtfUsuario.requestFocus();
+    }//GEN-LAST:event_jlUsuarioMouseClicked
+
+    private void jcbVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVisualizarActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("Trocou");
+    }//GEN-LAST:event_jcbVisualizarActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        // TODO add your handling code here:
+        jtfUsuario.setText("");
+        jpfSenha.setText("");
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
+        try {
+            loginServices logS = services.ServicesFactory.getLoginServices();
+            loginVO lVO = new loginVO(jtfUsuario.getText(), jpfSenha.getText());
+            
+            if(logS.verificaLogin(lVO)){
+                JfLogin jf = new JfLogin();
+                JfMain jfM = new JfMain();
+                jf.setVisible(false);
+                jfM.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbEntrarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -108,15 +230,21 @@ public class JfLogin extends javax.swing.JFrame {
                 JfLogin login = new JfLogin();
                 login.setVisible(true);
                 login.setBounds((screenSize.width/2 - 500/2), (screenSize.height/2 - 500/2), 500, 500);
-                
+                login.setBackground(Color.black);
                 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbLimpar;
+    private javax.swing.JCheckBox jcbVisualizar;
     private static javax.swing.JLabel jlLogin;
+    private javax.swing.JLabel jlSenha;
+    private javax.swing.JLabel jlUsuario;
+    private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
 }

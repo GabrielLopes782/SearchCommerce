@@ -22,16 +22,16 @@ public class loginServices {
          cDAO.cadastraLogin(lVO);
     }
     
-    public void verificaUsuario (loginVO lVO) throws SQLException{
-        cDAO.verificaLogin(lVO);
+    public boolean verificaLogin (loginVO lVO) throws SQLException{
+        return cDAO.verificaLogin(lVO);
     }
     
     public String geraHash(String dado) throws Exception{
         return encrypt.geraHash(dado);
     }
     
-    public void verificaSenha(String senha) throws SQLException{
-        cDAO.verificaSenha(senha);
+    public boolean verificaSenha(String senha) throws SQLException{
+        return cDAO.verificaSenha(senha);
     }
 }
     
