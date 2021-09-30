@@ -16,8 +16,9 @@ import services.loginServices;
  * @author Thiago Quevedo
  */
 public class SearchCommerce {
+
     public static boolean userLogin = false;
-    
+
     /**
      * @param args the command line arguments
      */
@@ -42,7 +43,6 @@ public class SearchCommerce {
 //                System.out.println("Deu errado");
 //            }
 //            logS.cadastraLogin(mL);
-
 
         } catch (Exception ex) {
             Logger.getLogger(SearchCommerce.class.getName()).log(Level.SEVERE, null, ex);

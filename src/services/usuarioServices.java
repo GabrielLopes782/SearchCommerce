@@ -14,13 +14,14 @@ import model.usuarioVO;
  * @author Thiago Quevedo
  */
 public class usuarioServices {
+
     private UsuarioDAO uDAO = dao.DAOFactory.getUsuarioDAO();
-    
-    public void cadastraUsuario (usuarioVO uVO) throws SQLException{
+
+    public void cadastraUsuario(usuarioVO uVO) throws SQLException {
         uDAO.cadastraUsuario(uVO);
     }
-    
-    public void buscaUsuario (int idLogin) throws SQLException{
+
+    public void buscaUsuario(int idLogin) throws SQLException {
         uDAO.buscaUsuario(idLogin);
     }
 }

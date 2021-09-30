@@ -15,23 +15,27 @@ import model.loginVO;
  * @author Thiago Quevedo
  */
 public class loginServices {
+
     private LoginDAO cDAO = dao.DAOFactory.getLoginDAO();
     private Encryptions encrypt = dao.DAOFactory.getEncrypt();
-    
-    public void cadastraLogin (loginVO lVO) throws SQLException{
-         cDAO.cadastraLogin(lVO);
+
+    public void cadastraLogin(loginVO lVO) throws SQLException {
+        cDAO.cadastraLogin(lVO);
     }
+
     
     public boolean verificaLogin (loginVO lVO) throws SQLException{
         return cDAO.verificaLogin(lVO);
+
     }
-    
-    public String geraHash(String dado) throws Exception{
+
+    public String geraHash(String dado) throws Exception {
         return encrypt.geraHash(dado);
     }
+
     
     public boolean verificaSenha(String senha) throws SQLException{
         return cDAO.verificaSenha(senha);
+
     }
 }
-    
