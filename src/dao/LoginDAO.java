@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.idVO;
 import model.loginVO;
 import model.usuarioVO;
 import persistencia.Conexao;
@@ -27,10 +28,17 @@ public class LoginDAO {
         Statement stat = con.createStatement();
 
         try {
-            String sql = "insert into login_user (id_login, usuario, senha)"
-                    + "values (null, '" + lVO.getUsuario() + "','" + lVO.getSenha() + "')";
+//            String sql = "insert into login_user (id_login, usuario, senha)"
+//                    + "values (null, '" + lVO.getUsuario() + "','" + lVO.getSenha() + "')";
 
-            stat.execute(sql);
+//            stat.execute(sql);
+            
+            String sql = "select id_login from login_user where '" + lVO.getUsuario() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+            System.out.println(rs);
+//            idVO idVO = new idVO();
+//            idVO.setIdLogin(rs.getInt("id_login"));
+            
         } catch (SQLException ex) {
             throw new SQLException("Erro ao inserir o usuario! " + ex.getMessage());
         } finally {
@@ -72,6 +80,8 @@ public class LoginDAO {
             if (rs.getString("usuario").equalsIgnoreCase(lVO.getUsuario())) {
                 if (rs.getString("senha").equals(lVO.getSenha())) {
                     SearchCommerce.userLogin = true;
+                    
+                    idVO idVO = new idVO(rs.getInt("id_user"), rs.getInt("id_login"));
                     usuarioS.buscaUsuario(rs.getInt("id_login"));
 
                     System.out.println("Certinho prota");

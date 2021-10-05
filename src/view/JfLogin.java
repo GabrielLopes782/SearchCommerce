@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.loginVO;
 import services.loginServices;
 
@@ -19,6 +20,10 @@ import services.loginServices;
  * @author Thiago Quevedo
  */
 public class JfLogin extends javax.swing.JFrame {
+
+    private static JfRegistraUsuario jfRL = new JfRegistraUsuario();
+    private static JfMain jfM = new JfMain();
+    private static loginServices logS = services.ServicesFactory.getLoginServices();
 
     /**
      * Creates new form JfLogin
@@ -37,6 +42,9 @@ public class JfLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jPanel1 = new javax.swing.JPanel();
+        jbLimpar = new javax.swing.JButton();
         jtfUsuario = new javax.swing.JTextField();
         jlSenha = new javax.swing.JLabel();
         jlUsuario = new javax.swing.JLabel();
@@ -44,7 +52,9 @@ public class JfLogin extends javax.swing.JFrame {
         jcbVisualizar = new javax.swing.JCheckBox();
         jpfSenha = new javax.swing.JPasswordField();
         jbEntrar = new javax.swing.JButton();
-        jbLimpar = new javax.swing.JButton();
+        jbCadastrar = new javax.swing.JButton();
+        jlAvisoUsuarioUser = new javax.swing.JLabel();
+        jlAvisoUsuarioSenha = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -60,6 +70,14 @@ public class JfLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
+        setMaximumSize(new java.awt.Dimension(500, 500));
+
+        jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
 
         jlSenha.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jlSenha.setText("Senha:");
@@ -98,61 +116,89 @@ public class JfLogin extends javax.swing.JFrame {
             }
         });
 
-        jbLimpar.setText("Limpar");
-        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+        jbCadastrar.setText("Cadastrar");
+        jbCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbLimparActionPerformed(evt);
+                jbCadastrarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(jlLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                            .addComponent(jlUsuario)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jcbVisualizar)
-                            .addComponent(jlSenha)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jpfSenha)))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+        jlAvisoUsuarioUser.setForeground(new java.awt.Color(255, 0, 0));
+        jlAvisoUsuarioUser.setText("*Insira um nome de usuário");
+
+        jlAvisoUsuarioSenha.setForeground(new java.awt.Color(255, 0, 0));
+        jlAvisoUsuarioSenha.setText("*Insira uma senha");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcbVisualizar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbCadastrar))
+                        .addComponent(jpfSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jlSenha)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlAvisoUsuarioSenha)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jlUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlAvisoUsuarioUser))
+                        .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(183, 183, 183)
                 .addComponent(jlLogin)
-                .addGap(35, 35, 35)
-                .addComponent(jlUsuario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jlLogin)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlUsuario)
+                    .addComponent(jlAvisoUsuarioUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jlSenha)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlSenha)
+                    .addComponent(jlAvisoUsuarioSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbVisualizar)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbEntrar)
-                    .addComponent(jbLimpar))
-                .addContainerGap(153, Short.MAX_VALUE))
+                    .addComponent(jbLimpar)
+                    .addComponent(jbCadastrar))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,7 +216,7 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jcbVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVisualizarActionPerformed
         // TODO add your handling code here:
-        
+
         System.out.println("Trocou");
     }//GEN-LAST:event_jcbVisualizarActionPerformed
 
@@ -182,20 +228,73 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         try {
-            loginServices logS = services.ServicesFactory.getLoginServices();
             loginVO lVO = new loginVO(jtfUsuario.getText(), jpfSenha.getText());
-            
-            if(logS.verificaLogin(lVO)){
-                JfLogin jf = new JfLogin();
-                JfMain jfM = new JfMain();
-                jf.setVisible(false);
-                jfM.setVisible(true);
+
+            if (jbEntrar.getText().equals("Entrar")) {
+                try {
+
+                    if (logS.verificaLogin(lVO)) {
+                        this.setVisible(false);
+                        jfM.setVisible(true);
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválidos!\n"
+                            + "Deseja se cadastrar?");
+                }
             }
-        } catch (SQLException ex) {
+            if (jbEntrar.getText().equals("Cadastrar")) {
+                try {
+                    logS.cadastraLogin(lVO);
+                jfRL.setVisible(true);
+                jfRL.setLocation(this.getX(), this.getY());
+                this.setVisible(false);
+                System.out.println(lVO.getUsuario());
+                System.out.println(lVO.getSenha());
+                System.out.println("Cadastrado com sucesso");
+                } catch (SQLException ex) {
+                    Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (Exception ex) {
             Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jbEntrarActionPerformed
-    
+
+    private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
+        // TODO add your handling code here:
+        if (!jlAvisoUsuarioUser.isVisible()) {
+            alteraParaCadastro();
+        } else {
+            alteraParaLogin();
+        }
+
+
+    }//GEN-LAST:event_jbCadastrarActionPerformed
+
+    private void alteraParaCadastro() {
+        jlLogin.setText("Cadastro");
+        jbCadastrar.setText("Cancelar");
+        jbEntrar.setText("Cadastrar");
+        jbLimpar.setEnabled(false);
+        jlAvisoUsuarioUser.setVisible(true);
+        jlAvisoUsuarioSenha.setVisible(true);
+
+        jtfUsuario.setText("");
+        jpfSenha.setText("");
+    }
+
+    private void alteraParaLogin() {
+        jlLogin.setText("Login");
+        jbCadastrar.setText("Cadastrar");
+        jbEntrar.setText("Entrar");
+        jbLimpar.setEnabled(true);
+        jlAvisoUsuarioUser.setVisible(false);
+        jlAvisoUsuarioSenha.setVisible(false);
+        jtfUsuario.setText("");
+        jpfSenha.setText("");
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -229,18 +328,24 @@ public class JfLogin extends javax.swing.JFrame {
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                 JfLogin login = new JfLogin();
                 login.setVisible(true);
-                login.setBounds((screenSize.width/2 - 500/2), (screenSize.height/2 - 500/2), 500, 500);
-                login.setBackground(Color.black);
-                
+                login.setBounds((screenSize.width / 2 - 500 / 2), (screenSize.height / 2 - 500 / 2), 500, 500);
+                jlAvisoUsuarioUser.setVisible(false);
+                jlAvisoUsuarioSenha.setVisible(false);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JButton jbCadastrar;
     private javax.swing.JButton jbEntrar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JCheckBox jcbVisualizar;
+    private static javax.swing.JLabel jlAvisoUsuarioSenha;
+    private static javax.swing.JLabel jlAvisoUsuarioUser;
     private static javax.swing.JLabel jlLogin;
     private javax.swing.JLabel jlSenha;
     private javax.swing.JLabel jlUsuario;

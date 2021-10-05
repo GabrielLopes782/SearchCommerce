@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.idVO;
 import model.usuarioVO;
 import persistencia.Conexao;
 
@@ -27,7 +28,7 @@ public class UsuarioDAO {
         try {
             String sql = "insert into usuario (id_user, nome_user, end_user, tel_user, email_user, id_login)"
                     + "values (null, '" + uVO.getNome() + "','" + uVO.getEndereco() + "','" + uVO.getTelefone()
-                    + "','" + uVO.getEmail() + "'," + uVO.getIdLogin() + ")";
+                    + "','" + uVO.getEmail() + "'," + idVO.getIdLogin() + ")";
 
             stat.execute(sql);
         } catch (SQLException ex) {
@@ -47,8 +48,8 @@ public class UsuarioDAO {
             String sql = "select * from usuario where id_login = " + idLogin;
 
             ResultSet rs = stat.executeQuery(sql);
-            usuarioVO uVO = new usuarioVO(rs.getInt("id_user"), rs.getString("nome_user"), rs.getString("end_user"), rs.getString("tel_user"), rs.getString("email_user"));
-
+            usuarioVO usuarioVO = new usuarioVO(rs.getString("nome_user"), rs.getString("end_user"), rs.getString("tel_user"), rs.getString("email_user"));
+            idVO idVO = new idVO(rs.getInt("id_user"), rs.getInt("id_login"));
         } catch (SQLException ex) {
             throw new SQLException("Erro ao buscar o usuario! " + ex.getMessage());
         }

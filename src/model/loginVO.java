@@ -32,9 +32,9 @@ public class loginVO {
         this.senha = encrypt.geraHash(senha);
     }
 
-    public loginVO(String usuario, String senha) {
-        this.usuario = usuario;
-        this.senha = senha;
+    public loginVO(String usuario, String senha) throws Exception {
+        this.usuario = encrypt.geraHash(usuario.toLowerCase());
+        this.senha = encrypt.geraHash(senha);
     }
 
     public loginVO() {

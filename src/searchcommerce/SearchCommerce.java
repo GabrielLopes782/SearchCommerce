@@ -18,7 +18,7 @@ import services.loginServices;
 public class SearchCommerce {
 
     public static boolean userLogin = false;
-
+    
     /**
      * @param args the command line arguments
      */
