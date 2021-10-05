@@ -18,7 +18,7 @@ import services.usuarioServices;
  * @author Thiago Quevedo
  */
 public class JfRegistraUsuario extends javax.swing.JFrame {
-    JfMain jfM = new JfMain();
+
 //    private static usuarioVO userVO = new usuarioVO();
     /**
      * Creates new form JfRegistraLogin

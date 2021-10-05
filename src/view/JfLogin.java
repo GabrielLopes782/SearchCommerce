@@ -22,7 +22,7 @@ import services.loginServices;
 public class JfLogin extends javax.swing.JFrame {
 
     private static JfRegistraUsuario jfRL = new JfRegistraUsuario();
-    private static JfMain jfM = new JfMain();
+  
     private static loginServices logS = services.ServicesFactory.getLoginServices();
 
     /**
