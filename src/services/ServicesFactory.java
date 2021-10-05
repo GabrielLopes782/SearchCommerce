@@ -13,7 +13,11 @@ public class ServicesFactory {
 
     private static final loginServices loginServices = new loginServices();
     private static final usuarioServices userServices = new usuarioServices();
-
+    private static final ProdServicos prodServices=new ProdServicos();
+    
+    public static ProdServicos getProdServicos(){
+        return prodServices;
+    }
     public static loginServices getLoginServices() {
         return loginServices;
     }

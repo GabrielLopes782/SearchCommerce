@@ -38,12 +38,26 @@ public class ProdutoDAO {
 
     }
 
-    public ArrayList<ProdutoVO> buscarProdutos(ProdutoVO pVO) throws SQLException {
+    public ArrayList<ProdutoVO> buscarProdutosEspecificos(ProdutoVO pVO) throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
         try {
             String sql;
             sql = "select * from tb_produto where nomeProduto like" + "%" + pVO.getNomeProduto() + "%";
+            ResultSet rs = stat.executeQuery(sql);
+            ArrayList<ProdutoVO> Produto = new ArrayList<>();
+            return Produto;
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao buscar Produto" + e.getMessage());
+        }
+
+    }
+       public ArrayList<ProdutoVO> buscarProdutos() throws SQLException {
+        Connection con = Conexao.getConexao();
+        Statement stat = con.createStatement();
+        try {
+            String sql;
+            sql = "select * from tb_produto";
             ResultSet rs = stat.executeQuery(sql);
             ArrayList<ProdutoVO> Produto = new ArrayList<>();
             return Produto;

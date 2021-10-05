@@ -17,6 +17,17 @@ public class DAOFactory {
     private static final LoginDAO loginDAO = new LoginDAO();
     private static final cryptography.Encryptions encrypt = new Encryptions();
     private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private static final CPDAO CompraprodDAo = new CPDAO();
+    private static final ProdutoDAO prodDAO = new ProdutoDAO();
+
+    public static ProdutoDAO getProdutoDAO() {
+        return prodDAO;
+
+    }
+
+    public static CPDAO getCpdao() {
+        return CompraprodDAo;
+    }
 
     public static LoginDAO getLoginDAO() {
         return loginDAO;
