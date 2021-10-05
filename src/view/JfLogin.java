@@ -232,12 +232,12 @@ public class JfLogin extends javax.swing.JFrame {
 
             if (jbEntrar.getText().equals("Entrar")) {
                 try {
-
                     if (logS.verificaLogin(lVO)) {
                         this.setVisible(false);
                         jfM.setVisible(true);
                     }
                 } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                     JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválidos!\n"
                             + "Deseja se cadastrar?");
                 }
@@ -245,12 +245,11 @@ public class JfLogin extends javax.swing.JFrame {
             if (jbEntrar.getText().equals("Cadastrar")) {
                 try {
                     logS.cadastraLogin(lVO);
-                jfRL.setVisible(true);
-                jfRL.setLocation(this.getX(), this.getY());
-                this.setVisible(false);
-                System.out.println(lVO.getUsuario());
-                System.out.println(lVO.getSenha());
-                System.out.println("Cadastrado com sucesso");
+                    jfRL.setVisible(true);
+                    jfRL.setLocation(this.getX(), this.getY());
+                    this.setVisible(false);
+                    
+                    System.out.println("Cadastrado com sucesso");
                 } catch (SQLException ex) {
                     Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -8,6 +8,7 @@ package view;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.loginVO;
 import model.usuarioVO;
 import services.loginServices;
@@ -218,23 +219,38 @@ public class JfRegistraUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfTelefoneKeyTyped
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
-        try {
-            // TODO add your handling code here:
+        System.out.println(verificaCampos().length);
+        if(verificaCampos().length == 0){
+            try {
             usuarioServices userS = services.ServicesFactory.getUserServices();
-            usuarioVO userVO = new usuarioVO( jtfNome.getText(), jtfEndereco.getText(), jtfTelefone.getText(),
-                    jtfEmail.getText());
+            usuarioVO userVO = new usuarioVO( jtfNome.getText(), jtfEndereco.getText(), jtfTelefone.getText(), jtfEmail.getText());
             userS.cadastraUsuario(userVO);
             jfM.setVisible(true);
             this.setVisible(false);
-            
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(JfRegistraUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-
+        } else {
+            System.out.println("ERROU");
+        }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
+    
+    private String [] verificaCampos(){
+        
+        String campos [] = {jtfNome.getText(), jtfEndereco.getText(), jtfEmail.getText(), jtfTelefone.getText()};
+        String label [] = {jlNome.getText(), jlEndereco.getText(), jlEmail.getText(), jlTelefone.getText()};
+        
+        String erros [] = new String [5];
+        for (int i = 0; i < campos.length; i++){
+            if(campos[i].equals("")){
+                erros[i] = label[i] + " não pode ser em branco!";
+            }
+        }
+        return erros;
+    }
+    
     public static String formataDados(String dado) {
         return dado.replaceAll("[^0-9 ]+", "");
     }
