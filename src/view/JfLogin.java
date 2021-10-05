@@ -56,6 +56,7 @@ public class JfLogin extends javax.swing.JFrame {
         jbCadastrar = new javax.swing.JButton();
         jlAvisoUsuarioUser = new javax.swing.JLabel();
         jlAvisoUsuarioSenha = new javax.swing.JLabel();
+        jtfVisualizaSenha = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,13 +131,24 @@ public class JfLogin extends javax.swing.JFrame {
         jlAvisoUsuarioSenha.setForeground(new java.awt.Color(255, 0, 0));
         jlAvisoUsuarioSenha.setText("*Insira uma senha");
 
+        jtfVisualizaSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfVisualizaSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(jlLogin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfVisualizaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbVisualizar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -157,10 +169,6 @@ public class JfLogin extends javax.swing.JFrame {
                             .addComponent(jlAvisoUsuarioUser))
                         .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(62, 62, 62))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jlLogin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +194,9 @@ public class JfLogin extends javax.swing.JFrame {
                     .addComponent(jbEntrar)
                     .addComponent(jbLimpar)
                     .addComponent(jbCadastrar))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfVisualizaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,8 +228,14 @@ public class JfLogin extends javax.swing.JFrame {
     private void jcbVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVisualizarActionPerformed
         // TODO add your handling code here:
         if(jcbVisualizar.isSelected()){
-            TextField jtfSenhaVisivel = new TextField();
-            jtfSenhaVisivel.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+            jtfVisualizaSenha.setText(jpfSenha.getText());
+            jtfVisualizaSenha.setBounds(jpfSenha.getX(), jpfSenha.getY() ,jpfSenha.getWidth(), jpfSenha.getHeight()) ;
+            jpfSenha.setVisible(false);
+            jtfVisualizaSenha.setVisible(true);
+        } else {
+            jpfSenha.setText(jtfVisualizaSenha.getText());
+            jpfSenha.setVisible(true);
+            jtfVisualizaSenha.setVisible(false);
         }
         System.out.println("Trocou");
     }//GEN-LAST:event_jcbVisualizarActionPerformed
@@ -249,6 +265,7 @@ public class JfLogin extends javax.swing.JFrame {
                         System.out.println(ex.getMessage());
                     }
                 }
+                
                 if (jbEntrar.getText().equals("Cadastrar")) {
                     try {
                         logS.cadastraLogin(lVO);
@@ -281,6 +298,10 @@ public class JfLogin extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jbCadastrarActionPerformed
+
+    private void jtfVisualizaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfVisualizaSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfVisualizaSenhaActionPerformed
 
     private void alteraParaCadastro() {
         jlLogin.setText("Cadastro");
@@ -341,6 +362,7 @@ public class JfLogin extends javax.swing.JFrame {
                 login.setBounds((screenSize.width / 2 - 500 / 2), (screenSize.height / 2 - 500 / 2), 500, 500);
                 jlAvisoUsuarioUser.setVisible(false);
                 jlAvisoUsuarioSenha.setVisible(false);
+                jtfVisualizaSenha.setVisible(false);
 
             }
         });
@@ -361,5 +383,6 @@ public class JfLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JPasswordField jpfSenha;
     private javax.swing.JTextField jtfUsuario;
+    private static javax.swing.JTextField jtfVisualizaSenha;
     // End of variables declaration//GEN-END:variables
 }
