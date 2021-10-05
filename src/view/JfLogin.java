@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.TextField;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ import services.loginServices;
 public class JfLogin extends javax.swing.JFrame {
 
     private static JfRegistraUsuario jfRL = new JfRegistraUsuario();
-  
+
     private static loginServices logS = services.ServicesFactory.getLoginServices();
 
     /**
@@ -216,7 +217,10 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jcbVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVisualizarActionPerformed
         // TODO add your handling code here:
-
+        if(jcbVisualizar.isSelected()){
+            TextField jtfSenhaVisivel = new TextField();
+            jtfSenhaVisivel.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+        }
         System.out.println("Trocou");
     }//GEN-LAST:event_jcbVisualizarActionPerformed
 
@@ -228,33 +232,40 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         try {
-            loginVO lVO = new loginVO(jtfUsuario.getText(), jpfSenha.getText());
+            JfMain jfM = new JfMain();
+            try {
+                loginVO lVO = new loginVO(jtfUsuario.getText(), jpfSenha.getText());
 
-            if (jbEntrar.getText().equals("Entrar")) {
-                try {
-                    if (logS.verificaLogin(lVO)) {
-                        this.setVisible(false);
-                        jfM.setVisible(true);
+                if (jbEntrar.getText().equals("Entrar")) {
+                    try {
+                        if (logS.verificaLogin(lVO)) {
+                            this.setVisible(false);
+                            jfM.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválidos!\n"
+                                    + "Deseja se cadastrar?");
+                        }
+                    } catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
                     }
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                    JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválidos!\n"
-                            + "Deseja se cadastrar?");
                 }
-            }
-            if (jbEntrar.getText().equals("Cadastrar")) {
-                try {
-                    logS.cadastraLogin(lVO);
-                    jfRL.setVisible(true);
-                    jfRL.setLocation(this.getX(), this.getY());
-                    this.setVisible(false);
-                    
-                    System.out.println("Cadastrado com sucesso");
-                } catch (SQLException ex) {
-                    Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
+                if (jbEntrar.getText().equals("Cadastrar")) {
+                    try {
+                        logS.cadastraLogin(lVO);
+                        jfRL.setVisible(true);
+                        jfRL.setLocation(this.getX(), this.getY());
+                        this.setVisible(false);
+
+                        System.out.println("Cadastrado com sucesso");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+            } catch (Exception ex) {
+                Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
 

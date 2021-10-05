@@ -48,8 +48,12 @@ public class UsuarioDAO {
             String sql = "select * from usuario where id_login = " + idLogin;
 
             ResultSet rs = stat.executeQuery(sql);
-            usuarioVO usuarioVO = new usuarioVO(rs.getString("nome_user"), rs.getString("end_user"), rs.getString("tel_user"), rs.getString("email_user"));
-            idVO idVO = new idVO(rs.getInt("id_user"), rs.getInt("id_login"));
+            if(rs.next()){
+                usuarioVO usuarioVO = new usuarioVO(rs.getString("nome_user"), rs.getString("end_user"), rs.getString("tel_user"), rs.getString("email_user"));
+                idVO idVO = new idVO(rs.getInt("id_user"), rs.getInt("id_login"));
+            }
+            
+            
         } catch (SQLException ex) {
             throw new SQLException("Erro ao buscar o usuario! " + ex.getMessage());
         }

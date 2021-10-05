@@ -25,17 +25,11 @@ public class loginServices {
 
     
     public boolean verificaLogin (loginVO lVO) throws SQLException{
-        return cDAO.verificaLogin(lVO);
+         return cDAO.verificaLogin(lVO);
 
     }
 
     public String geraHash(String dado) throws Exception {
         return encrypt.geraHash(dado);
-    }
-
-    
-    public boolean verificaSenha(String senha) throws SQLException{
-        return cDAO.verificaSenha(senha);
-
     }
 }

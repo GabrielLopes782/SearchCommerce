@@ -19,7 +19,7 @@ import services.usuarioServices;
  * @author Thiago Quevedo
  */
 public class JfRegistraUsuario extends javax.swing.JFrame {
-
+    
 //    private static usuarioVO userVO = new usuarioVO();
     /**
      * Creates new form JfRegistraLogin
@@ -219,36 +219,44 @@ public class JfRegistraUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfTelefoneKeyTyped
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
-        System.out.println(verificaCampos().length);
-        if(verificaCampos().length == 0){
-            try {
-            usuarioServices userS = services.ServicesFactory.getUserServices();
-            usuarioVO userVO = new usuarioVO( jtfNome.getText(), jtfEndereco.getText(), jtfTelefone.getText(), jtfEmail.getText());
-            userS.cadastraUsuario(userVO);
-            jfM.setVisible(true);
-            this.setVisible(false);
-                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+        try {
+            JfMain jfM = new JfMain();
+            if(verificaCampos()){
+                try {
+                    usuarioServices userS = services.ServicesFactory.getUserServices();
+                    usuarioVO userVO = new usuarioVO( jtfNome.getText(), jtfEndereco.getText(), jtfTelefone.getText(), jtfEmail.getText());
+                    userS.cadastraUsuario(userVO);
+                    jfM.setVisible(true);
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                } catch (SQLException ex) {
+                    Logger.getLogger(JfRegistraUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                System.out.println("ERROU");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(JfRegistraUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        } else {
-            System.out.println("ERROU");
         }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     
-    private String [] verificaCampos(){
-        
+    private boolean verificaCampos(){
+        boolean valida = true;
         String campos [] = {jtfNome.getText(), jtfEndereco.getText(), jtfEmail.getText(), jtfTelefone.getText()};
-        String label [] = {jlNome.getText(), jlEndereco.getText(), jlEmail.getText(), jlTelefone.getText()};
+        String label [] = {"Nome", "Endereço", "Email", "Telefone"};
         
         String erros [] = new String [5];
         for (int i = 0; i < campos.length; i++){
             if(campos[i].equals("")){
                 erros[i] = label[i] + " não pode ser em branco!";
+                valida = false;
             }
         }
-        return erros;
+        if(!valida){
+            JOptionPane.showMessageDialog(rootPane, erros);
+        }
+        return valida;
     }
     
     public static String formataDados(String dado) {

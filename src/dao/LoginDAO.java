@@ -50,25 +50,6 @@ public class LoginDAO {
 
     }
 
-    public boolean verificaSenha(String senha) throws SQLException {
-        boolean valida = false;
-        Connection con = Conexao.getConexao();
-        Statement stat = con.createStatement();
-
-        try {
-            String sql = "select senha from login_user where senha = '" + senha + "'";
-            ResultSet rs = stat.executeQuery(sql);
-            if (rs.next()) {
-                System.out.println(rs.getString("senha"));
-                valida = true;
-            }
-
-        } catch (SQLException e) {
-            throw new SQLException("Erro ao verificar a senha " + e.getMessage());
-        }
-        return valida;
-    }
-
     public boolean verificaLogin(loginVO lVO) throws SQLException {
         usuarioServices usuarioS = services.ServicesFactory.getUserServices();
         Connection con = Conexao.getConexao();
@@ -85,8 +66,8 @@ public class LoginDAO {
                     if (rs.getString("senha").equals(lVO.getSenha())) {
                         SearchCommerce.userLogin = true;
 
-                        idVO idVO = new idVO(1, rs.getInt("id_login"));
-//                        usuarioS.buscaUsuario(rs.getInt("id_login"));
+                        idVO idVO = new idVO(0, rs.getInt("id_login"));
+                        usuarioS.buscaUsuario(rs.getInt("id_login"));
 
                         System.out.println("Certinho prota");
 
