@@ -25,6 +25,11 @@ public class JfMain extends javax.swing.JFrame {
         initComponents();
         addRowToTable();
     }
+    public void addCategoria(){
+        jcbCategoria.addItem("Selecione");
+        for
+        
+    }
 public void addRowToTable() throws SQLException{
     DefaultTableModel model=(DefaultTableModel) jTCompras.getModel();
     model.getDataVector().removeAllElements();
@@ -203,6 +208,9 @@ public void addRowToTable() throws SQLException{
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
+        jtfFiltroNome.setText("");
+        jcbCategoria.setSelectedIndex(1);
+        
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void JbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbComprarActionPerformed
