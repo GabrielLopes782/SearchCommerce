@@ -18,12 +18,11 @@ public class ProdutoVO {
     private String nomeCategoria;
     private int idCategoria;
 
-    public ProdutoVO(int idProduto, float preco, String nomeProduto, String caracteristicas, String nomeCategoria, int idCategoria) {
+    public ProdutoVO(int idProduto, float preco, String nomeProduto, String caracteristicas, int idCategoria) {
         this.idProduto = idProduto;
         this.preco = preco;
         this.nomeProduto = nomeProduto;
         this.caracteristicas = caracteristicas;
-        this.nomeCategoria = nomeCategoria;
         this.idCategoria = idCategoria;
     }
 

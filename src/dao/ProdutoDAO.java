@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.ProdutoVO;
 import persistencia.Conexao;
 
@@ -60,11 +62,11 @@ public class ProdutoDAO {
             sql = "select * from tb_produto";
             ResultSet rs = stat.executeQuery(sql);
             ArrayList<ProdutoVO> Produto = new ArrayList<>();
+            
             return Produto;
         } catch (SQLException e) {
             throw new SQLException("Erro ao buscar Produto" + e.getMessage());
         }
-
     }
 
     public void DeletarProdutos(int idProduto) throws SQLException {
@@ -98,8 +100,23 @@ public class ProdutoDAO {
         } finally {
             con.close();
             stat.close();
-
         }
-
+    }
+    
+    public ArrayList<ProdutoVO> filtraProdutoNome(String nome) throws SQLException{
+        
+            Connection con = Conexao.getConexao();
+            Statement stat = con.createStatement();
+            
+            String sql = "select * from tb_produto where nomeProduto like '% " + nome + "%'";
+            ResultSet rs = stat.executeQuery(sql);
+            
+            ArrayList<ProdutoVO> Produto = new ArrayList<>();
+            
+            while (rs.next()) {
+                ProdutoVO prod = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"), rs.getString("caracteristicas"), rs.getInt("id_categoria"));
+                Produto.add(prod);
+            }
+            return Produto;
     }
 }

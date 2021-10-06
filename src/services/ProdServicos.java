@@ -16,24 +16,25 @@ import model.ProdutoVO;
  * @author Menin
  */
 public class ProdServicos {
-            
+    private static ProdutoDAO pDAO = DAOFactory.getProdutoDAO();
+    
     public void CadastrarProdutos(ProdutoVO pVO) throws SQLException{
-        ProdutoDAO pDAO=DAOFactory.getProdutoDAO();
         pDAO.cadastrarProduto(pVO);
     
 }
     public ArrayList<ProdutoVO> buscarProduto() throws SQLException{
-        ProdutoDAO pDAO= DAOFactory.getProdutoDAO();
         return pDAO.buscarProdutos();
               
     }
     public void deletarProduto(int idProduto) throws SQLException{
-        ProdutoDAO pdao=DAOFactory.getProdutoDAO();
-        pdao.DeletarProdutos(idProduto);
+        pDAO.DeletarProdutos(idProduto);
         
     }
     public void alterarProduto(ProdutoVO pVO) throws SQLException{
-        ProdutoDAO pdao=DAOFactory.getProdutoDAO();
-        pdao.alterarProduto(pVO);
+        pDAO.alterarProduto(pVO);
+    }
+    
+    public filtrarProdutoNome(){
+        
     }
 }
