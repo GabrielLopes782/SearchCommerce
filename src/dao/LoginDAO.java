@@ -47,7 +47,6 @@ public class LoginDAO {
             stat.close();
             con.close();
         }
-
     }
 
     public boolean verificaLogin(loginVO lVO) throws SQLException {
