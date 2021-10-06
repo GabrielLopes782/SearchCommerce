@@ -34,7 +34,7 @@ public class ProdServicos {
         pDAO.alterarProduto(pVO);
     }
     
-    public filtrarProdutoNome(){
-        
+    public ArrayList<ProdutoVO> filtrarProdutoNome(String nome) throws SQLException{
+        return pDAO.filtraProdutoNome(nome);
     }
 }

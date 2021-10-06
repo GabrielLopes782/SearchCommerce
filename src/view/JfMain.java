@@ -27,6 +27,7 @@ public class JfMain extends javax.swing.JFrame {
         addRowToTable();
     }
 
+
     public void addRowToTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) jTCompras.getModel();
         
@@ -43,6 +44,7 @@ public class JfMain extends javax.swing.JFrame {
             rowData[3] = listProd.getPreco();
             model.addRow(rowData);
         }
+
     }
     
     public void addRowToTableBuscar(ArrayList<ProdutoVO> produto) throws SQLException {
@@ -231,6 +233,10 @@ public class JfMain extends javax.swing.JFrame {
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
+
+        jtfFiltroNome.setText("");
+        jcbCategoria.setSelectedIndex(1);
+
         
     }//GEN-LAST:event_jbLimparActionPerformed
 
@@ -243,9 +249,13 @@ public class JfMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbCategoriaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        ProdServicos prodS = services.ServicesFactory.getProdServicos();
-        this.addRowToTableBuscar(prodS.filtrarProdutoNome(jtfFiltroNome.getText()));
+        try {
+            // TODO add your handling code here:
+            ProdServicos prodS = services.ServicesFactory.getProdServicos();
+            this.addRowToTableBuscar(prodS.filtrarProdutoNome(jtfFiltroNome.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JfMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     /**

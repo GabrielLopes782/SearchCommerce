@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="NetBeansProjects">
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/searchcommerce/SearchCommerce.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/UsuarioDAO.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/CPDAO.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/ProdutoDAO.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/model/CPVO.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/persistencia/Conexao.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/DAOFactory.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/LoginDAO.java</file>
-            <file>file:/D:/NetBeansProjects/SearchCommerce/src/model/loginVO.java</file>
-        </group>
         <group>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/view/JfMain.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/searchcommerce/SearchCommerce.java</file>
@@ -25,6 +14,10 @@
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/model/idVO.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/services/loginServices.java</file>
             <file>file:/C:/Users/thiag/OneDrive/SearchCommerce/src/view/JfRegistraUsuario.java</file>
+        </group>
+        <group name="NetBeansProjects">
+            <file>file:/D:/NetBeansProjects/SearchCommerce/src/dao/CompraDAO.java</file>
+            <file>file:/D:/NetBeansProjects/SearchCommerce/src/view/JfMain.java</file>
         </group>
     </open-files>
 </project-private>
