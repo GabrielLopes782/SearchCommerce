@@ -97,6 +97,12 @@ public void addRowToTable() throws SQLException{
 
         jLabel2.setText("Filtrar Categoria:");
 
+        jtfFiltroNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfFiltroNomeActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Filtrar Por Nome");
 
         JbComprar.setText("Comprar");
@@ -192,6 +198,7 @@ public void addRowToTable() throws SQLException{
 
     private void JbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbCancelarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_JbCancelarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
@@ -204,7 +211,12 @@ public void addRowToTable() throws SQLException{
 
     private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jcbCategoriaActionPerformed
+
+    private void jtfFiltroNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFiltroNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfFiltroNomeActionPerformed
 
     /**
      * @param args the command line arguments
