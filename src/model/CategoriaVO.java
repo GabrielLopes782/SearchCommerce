@@ -5,14 +5,18 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Menin
  */
 public class CategoriaVO {
-private int idCategoria;
-private String NomeCategoria;
+    private int idCategoria;
+    private String NomeCategoria;
 
+    private ArrayList <CategoriaVO> categorias = new ArrayList<>();
+    
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -29,9 +33,20 @@ private String NomeCategoria;
         this.NomeCategoria = NomeCategoria;
     }
 
+    public ArrayList<CategoriaVO> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(CategoriaVO categorias) {
+        this.categorias.add(categorias);
+    }
+
     public CategoriaVO(int idCategoria, String NomeCategoria) {
         this.idCategoria = idCategoria;
         this.NomeCategoria = NomeCategoria;
+    }
+
+    public CategoriaVO() {
     }
 
     @Override

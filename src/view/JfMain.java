@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.CategoriaVO;
 import model.ProdutoVO;
 import services.ProdServicos;
 
@@ -61,6 +62,13 @@ public class JfMain extends javax.swing.JFrame {
             rowData[2] = listProd.getNomeCategoria();
             rowData[3] = listProd.getPreco();
             model.addRow(rowData);
+        }
+    }
+    
+    public void completeComboBox(){
+        CategoriaVO cVO = new CategoriaVO();
+        for (CategoriaVO categoria : cVO.getCategorias()){
+            jcbCategoria.addItem(categoria.getNomeCategoria());
         }
     }
 
