@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Menin
@@ -18,6 +20,11 @@ public class ProdutoVO {
     private String nomeCategoria;
     private int idCategoria;
 
+    private ArrayList<ProdutoVO> produtos = new ArrayList<>();
+
+    public ProdutoVO() {
+    }
+    
     public ProdutoVO(int idProduto, float preco, String nomeProduto, String caracteristicas, int idCategoria) {
         this.idProduto = idProduto;
         this.preco = preco;
@@ -74,9 +81,21 @@ public class ProdutoVO {
         this.nomeCategoria = nomeCategoria;
     }
 
+    public ArrayList<ProdutoVO> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(ArrayList<ProdutoVO> produtos) {
+        this.produtos = produtos;
+    }
+
+    public void addProdutos(ProdutoVO produtos) {
+        this.produtos.add(produtos);
+    }
+
     @Override
     public String toString() {
-        return "ProdutoVO{" + "idProduto=" + idProduto + ", preco=" + preco + ", nomeProduto=" + nomeProduto + ", caracteristicas=" + caracteristicas + ", nomeCategoria=" + nomeCategoria + ", idCategoria=" + idCategoria + '}';
+        return "ProdutoVO{" + "idProduto=" + idProduto + ", preco=" + preco + ", nomeProduto=" + nomeProduto + ", caracteristicas=" + caracteristicas  + ", idCategoria=" + idCategoria + '}';
     }
 
 }

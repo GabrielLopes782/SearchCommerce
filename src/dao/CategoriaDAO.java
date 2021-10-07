@@ -54,7 +54,7 @@ public class CategoriaDAO {
     public ArrayList<CategoriaVO> buscarCategorias() throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-        ArrayList <CategoriaVO> retorna = new ArrayList<>();
+        ArrayList <CategoriaVO> retornaCategoria = new ArrayList<>();
         try {
             String sql = "select * from categoria";
             ResultSet rs = stat.executeQuery(sql);
@@ -64,13 +64,31 @@ public class CategoriaDAO {
                 cVO.setIdCategoria(rs.getInt("id_categoria"));
                 cVO.setNomeCategoria(rs.getString("nome_categoria"));
                 
-                cVO.addCategorias(cVO);
+                
                 System.out.println(cVO.getCategorias());
-                retorna.add(cVO);
+                retornaCategoria.add(cVO);
             }
         } catch (SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
-        return retorna;
+        return retornaCategoria;
+    }
+    
+    public String retornaCategoria(int idCategoria) throws SQLException{
+        Connection con = Conexao.getConexao();
+        Statement stat = con.createStatement();
+        
+        String categoria = "";
+        try {
+            String sql = "select nome_categoria from categoria where id_categoria = " + idCategoria;
+            ResultSet rs = stat.executeQuery(sql);
+
+            while (rs.next()) {
+                categoria = rs.getString("nome_categoria");
+            }
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+        return categoria;
     }
 }

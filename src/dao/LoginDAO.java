@@ -32,11 +32,11 @@ public class LoginDAO {
                     + " values (null, '" + lVO.getUsuario() + "','" + lVO.getSenha() + "')";
 
             stat.execute(sql);
-
-            sql = "select id_login from login_user where '" + lVO.getUsuario() + "'";
+            
+            sql = "select id_login from login_user where usuario = '" + lVO.getUsuario() + "'";
             ResultSet rs = stat.executeQuery(sql);
+            
             if (rs != null && rs.next()) {
-                System.out.println(rs);
                 idVO idVO = new idVO();
                 idVO.setIdLogin(rs.getInt("id_login"));
             }

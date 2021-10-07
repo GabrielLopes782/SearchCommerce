@@ -110,6 +110,11 @@ public class JfLogin extends javax.swing.JFrame {
         });
 
         jpfSenha.setEchoChar('\u25cf');
+        jpfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jpfSenhaKeyTyped(evt);
+            }
+        });
 
         jbEntrar.setText("Entrar");
         jbEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -131,9 +136,9 @@ public class JfLogin extends javax.swing.JFrame {
         jlAvisoUsuarioSenha.setForeground(new java.awt.Color(255, 0, 0));
         jlAvisoUsuarioSenha.setText("*Insira uma senha");
 
-        jtfVisualizaSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfVisualizaSenhaActionPerformed(evt);
+        jtfVisualizaSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfVisualizaSenhaKeyTyped(evt);
             }
         });
 
@@ -251,7 +256,6 @@ public class JfLogin extends javax.swing.JFrame {
             JfMain jfM = new JfMain();
             try {
                 loginVO lVO = new loginVO(jtfUsuario.getText(), jpfSenha.getText());
-
                 if (jbEntrar.getText().equals("Entrar")) {
                     try {
                         if (logS.verificaLogin(lVO)) {
@@ -281,7 +285,6 @@ public class JfLogin extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(JfLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -299,9 +302,14 @@ public class JfLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
-    private void jtfVisualizaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfVisualizaSenhaActionPerformed
+    private void jpfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpfSenhaKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfVisualizaSenhaActionPerformed
+        
+    }//GEN-LAST:event_jpfSenhaKeyTyped
+
+    private void jtfVisualizaSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfVisualizaSenhaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfVisualizaSenhaKeyTyped
 
     private void alteraParaCadastro() {
         jlLogin.setText("Cadastro");

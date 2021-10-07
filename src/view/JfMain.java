@@ -6,6 +6,7 @@
 package view;
 
 import dao.CategoriaDAO;
+import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -39,12 +40,16 @@ public class JfMain extends javax.swing.JFrame {
         
         Object rowData[] = new Object[5];
         
-        ProdServicos produtoServi = services.ServicesFactory.getProdServicos();
-        for (ProdutoVO listProd : produtoServi.buscarProduto()) {
-            rowData[0] = listProd.getNomeProduto();
-            rowData[1] = listProd.getCaracteristicas();
-            rowData[2] = listProd.getNomeCategoria();
-            rowData[3] = listProd.getPreco();
+        ProdutoVO pVO = new ProdutoVO();
+        ProdutoDAO pDAO = new ProdutoDAO();
+        pVO.setProdutos(pDAO.buscarProdutos());
+        
+        for (ProdutoVO listProd : pVO.getProdutos()) {
+            rowData[0] = listProd.getIdProduto();
+            rowData[1] = listProd.getNomeProduto();
+            rowData[2] = listProd.getCaracteristicas();
+            rowData[3] = listProd.getNomeCategoria();
+            rowData[4] = listProd.getPreco();
             model.addRow(rowData);
         }
 
@@ -59,10 +64,11 @@ public class JfMain extends javax.swing.JFrame {
         Object rowData[] = new Object[5];
         
         for (ProdutoVO listProd : produto) {
-            rowData[0] = listProd.getNomeProduto();
-            rowData[1] = listProd.getCaracteristicas();
-            rowData[2] = listProd.getNomeCategoria();
-            rowData[3] = listProd.getPreco();
+            rowData[0] = listProd.getIdProduto();
+            rowData[1] = listProd.getNomeProduto();
+            rowData[2] = listProd.getCaracteristicas();
+            rowData[3] = listProd.getNomeCategoria();
+            rowData[4] = listProd.getPreco();
             model.addRow(rowData);
         }
     }
