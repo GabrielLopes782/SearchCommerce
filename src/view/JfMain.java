@@ -5,6 +5,7 @@
  */
 package view;
 
+import dao.CategoriaDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class JfMain extends javax.swing.JFrame {
     public JfMain() throws SQLException {
         initComponents();
         addRowToTable();
+        this.completeComboBox();
     }
 
 
@@ -66,9 +68,17 @@ public class JfMain extends javax.swing.JFrame {
     }
     
     public void completeComboBox(){
-        CategoriaVO cVO = new CategoriaVO();
-        for (CategoriaVO categoria : cVO.getCategorias()){
-            jcbCategoria.addItem(categoria.getNomeCategoria());
+        try {
+            CategoriaVO cVO = new CategoriaVO();
+            CategoriaDAO cDAO = dao.DAOFactory.getCategoriaDAO();
+            cVO.setCategorias(cDAO.buscarCategorias());
+            System.out.println(cVO.getCategorias());
+            for (CategoriaVO categoria : cVO.getCategorias()){
+                
+                jcbCategoria.addItem(categoria.getNomeCategoria());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JfMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,18 +116,36 @@ public class JfMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome Do Produto", "Carcaterísticas", "Categoria", "Preço"
+                "Id", "Nome", "Carcaterísticas", "Categoria", "Preço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(jTCompras);
+        if (jTCompras.getColumnModel().getColumnCount() > 0) {
+            jTCompras.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTCompras.getColumnModel().getColumn(0).setMaxWidth(30);
+            jTCompras.getColumnModel().getColumn(1).setPreferredWidth(85);
+            jTCompras.getColumnModel().getColumn(1).setMaxWidth(85);
+            jTCompras.getColumnModel().getColumn(2).setPreferredWidth(175);
+            jTCompras.getColumnModel().getColumn(2).setMaxWidth(175);
+            jTCompras.getColumnModel().getColumn(3).setResizable(false);
+            jTCompras.getColumnModel().getColumn(4).setPreferredWidth(60);
+            jTCompras.getColumnModel().getColumn(4).setMaxWidth(60);
+        }
 
         jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +278,7 @@ public class JfMain extends javax.swing.JFrame {
 
     private void JbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbComprarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_JbComprarActionPerformed
 
     private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed

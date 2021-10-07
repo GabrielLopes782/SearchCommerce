@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import model.CategoriaVO;
 import persistencia.Conexao;
 
@@ -50,19 +51,26 @@ public class CategoriaDAO {
         }
     }
 
-    public void buscarCategorias() throws SQLException {
+    public ArrayList<CategoriaVO> buscarCategorias() throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-
+        ArrayList <CategoriaVO> retorna = new ArrayList<>();
         try {
             String sql = "select * from categoria";
             ResultSet rs = stat.executeQuery(sql);
 
             while (rs.next()) {
-                CategoriaVO cVO = new CategoriaVO(rs.getInt("id_categoria"), rs.getString("nome_categoria"));
-                cVO.setCategorias(cVO);
+                CategoriaVO cVO = new CategoriaVO();
+                cVO.setIdCategoria(rs.getInt("id_categoria"));
+                cVO.setNomeCategoria(rs.getString("nome_categoria"));
+                
+                cVO.addCategorias(cVO);
+                System.out.println(cVO.getCategorias());
+                retorna.add(cVO);
             }
         } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage());
         }
+        return retorna;
     }
 }

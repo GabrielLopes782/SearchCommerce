@@ -19,10 +19,10 @@ public class DAOFactory {
     private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private static final CPDAO CompraprodDAo = new CPDAO();
     private static final ProdutoDAO prodDAO = new ProdutoDAO();
+    private static final CategoriaDAO catDAO = new CategoriaDAO();
 
     public static ProdutoDAO getProdutoDAO() {
         return prodDAO;
-
     }
 
     public static CPDAO getCpdao() {
@@ -39,5 +39,9 @@ public class DAOFactory {
 
     public static UsuarioDAO getUsuarioDAO() {
         return usuarioDAO;
+    }
+    
+    public static CategoriaDAO getCategoriaDAO(){
+        return catDAO;
     }
 }

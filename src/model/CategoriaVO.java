@@ -36,8 +36,12 @@ public class CategoriaVO {
     public ArrayList<CategoriaVO> getCategorias() {
         return categorias;
     }
+    
+    public void setCategorias (ArrayList<CategoriaVO> categorias) {
+        this.categorias = categorias;
+    }
 
-    public void setCategorias(CategoriaVO categorias) {
+    public void addCategorias(CategoriaVO categorias) {
         this.categorias.add(categorias);
     }
 
