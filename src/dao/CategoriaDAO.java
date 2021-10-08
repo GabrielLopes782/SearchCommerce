@@ -64,8 +64,6 @@ public class CategoriaDAO {
                 cVO.setIdCategoria(rs.getInt("id_categoria"));
                 cVO.setNomeCategoria(rs.getString("nome_categoria"));
                 
-                
-                System.out.println(cVO.getCategorias());
                 retornaCategoria.add(cVO);
             }
         } catch (SQLException ex) {

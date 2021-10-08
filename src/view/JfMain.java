@@ -62,7 +62,7 @@ public class JfMain extends javax.swing.JFrame {
     }
 
     public void addRowToTableBuscar(ArrayList<ProdutoVO> produto) throws SQLException {
-        System.out.println(produto);
+        
         DefaultTableModel model = (DefaultTableModel) jTCompras.getModel();
 
         model.getDataVector().removeAllElements();
@@ -118,7 +118,6 @@ public class JfMain extends javax.swing.JFrame {
         JbCancelar = new javax.swing.JButton();
         jbLimpar = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
-        jlBemVindo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -200,9 +199,6 @@ public class JfMain extends javax.swing.JFrame {
             }
         });
 
-        jlBemVindo.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jlBemVindo.setText("Bem vindo");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -233,9 +229,7 @@ public class JfMain extends javax.swing.JFrame {
                 .addComponent(jSeparator1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jlBemVindo)
-                .addGap(273, 273, 273)
+                .addGap(320, 320, 320)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -243,9 +237,7 @@ public class JfMain extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jlBemVindo))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -373,7 +365,6 @@ public class JfMain extends javax.swing.JFrame {
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JComboBox<String> jcbCategoria;
-    private javax.swing.JLabel jlBemVindo;
     private javax.swing.JTextField jtfFiltroNome;
     // End of variables declaration//GEN-END:variables
 }

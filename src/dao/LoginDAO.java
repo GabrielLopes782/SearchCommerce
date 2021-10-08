@@ -68,8 +68,6 @@ public class LoginDAO {
                         idVO idVO = new idVO(0, rs.getInt("id_login"));
                         usuarioS.buscaUsuario(rs.getInt("id_login"));
 
-                        System.out.println("Certinho prota");
-
                     } else {
                         SearchCommerce.userLogin = false;
                     }

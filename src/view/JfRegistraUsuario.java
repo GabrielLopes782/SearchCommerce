@@ -210,7 +210,6 @@ public class JfRegistraUsuario extends javax.swing.JFrame {
 
     private void jtfTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefoneKeyTyped
         // TODO add your handling code here:
-        System.out.println(evt.getKeyChar());
         String dado = evt.getKeyChar() + "";
         if(formataDados(dado).equals("")){
             evt.consume();

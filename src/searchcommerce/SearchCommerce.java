@@ -5,14 +5,8 @@
  */
 package searchcommerce;
 
-import dao.LoginDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.loginVO;
-import services.loginServices;
 import view.JfLogin;
 
 /**

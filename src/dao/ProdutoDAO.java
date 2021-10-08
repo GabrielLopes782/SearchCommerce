@@ -155,16 +155,14 @@ public class ProdutoDAO {
         try {
             String sql = "select * from tb_produto where id_categoria = " + idCategoria;
             ResultSet rs = stat.executeQuery(sql);
-//            while(rs.next()){
-//                System.out.println(rs.getString("nomeProduto"));;
-//            }
+
             
             while (rs.next()) {
                 ProdutoVO pVO = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"),
                         rs.getString("caracteristicas"), cDAO.retornaCategoria(rs.getInt("id_categoria")), rs.getInt("id_categoria"));
-//                System.out.println(pVO);
+
                 Produto.add(pVO);
-//                System.out.println(Produto);
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
