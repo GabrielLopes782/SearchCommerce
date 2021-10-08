@@ -37,4 +37,12 @@ public class ProdServicos {
     public ArrayList<ProdutoVO> filtrarProdutoNome(String nome) throws SQLException{
         return pDAO.filtraProdutoNome(nome);
     }
+    
+    public ArrayList<ProdutoVO> filtrarProdutoCB(int idCategoria) throws SQLException{
+        return pDAO.filtraProdutoCB(idCategoria);
+    }
+    
+    public ArrayList<ProdutoVO> filtrarProdutoNomeCB(String nome, int idCategoria) throws SQLException{
+        return pDAO.filtraProdutoNomeCB(nome, idCategoria);
+    }
 }

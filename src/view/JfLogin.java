@@ -31,6 +31,9 @@ public class JfLogin extends javax.swing.JFrame {
      */
     public JfLogin() {
         initComponents();
+        jlAvisoUsuarioUser.setVisible(false);
+        jlAvisoUsuarioSenha.setVisible(false);
+        jtfVisualizaSenha.setVisible(false);
     }
 
     /**
@@ -232,9 +235,9 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jcbVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVisualizarActionPerformed
         // TODO add your handling code here:
-        if(jcbVisualizar.isSelected()){
+        if (jcbVisualizar.isSelected()) {
             jtfVisualizaSenha.setText(jpfSenha.getText());
-            jtfVisualizaSenha.setBounds(jpfSenha.getX(), jpfSenha.getY() ,jpfSenha.getWidth(), jpfSenha.getHeight()) ;
+            jtfVisualizaSenha.setBounds(jpfSenha.getX(), jpfSenha.getY(), jpfSenha.getWidth(), jpfSenha.getHeight());
             jpfSenha.setVisible(false);
             jtfVisualizaSenha.setVisible(true);
         } else {
@@ -269,7 +272,7 @@ public class JfLogin extends javax.swing.JFrame {
                         System.out.println(ex.getMessage());
                     }
                 }
-                
+
                 if (jbEntrar.getText().equals("Cadastrar")) {
                     try {
                         logS.cadastraLogin(lVO);
@@ -304,7 +307,7 @@ public class JfLogin extends javax.swing.JFrame {
 
     private void jpfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpfSenhaKeyTyped
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jpfSenhaKeyTyped
 
     private void jtfVisualizaSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfVisualizaSenhaKeyTyped

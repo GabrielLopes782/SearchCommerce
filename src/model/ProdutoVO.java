@@ -24,14 +24,17 @@ public class ProdutoVO {
 
     public ProdutoVO() {
     }
-    
-    public ProdutoVO(int idProduto, float preco, String nomeProduto, String caracteristicas, int idCategoria) {
+
+    public ProdutoVO(int idProduto, float preco, String nomeProduto, String caracteristicas, String nomeCategoria, int idCategoria) {
         this.idProduto = idProduto;
         this.preco = preco;
         this.nomeProduto = nomeProduto;
         this.caracteristicas = caracteristicas;
+        this.nomeCategoria = nomeCategoria;
         this.idCategoria = idCategoria;
     }
+    
+    
 
     public int getIdCategoria() {
         return idCategoria;
@@ -95,7 +98,7 @@ public class ProdutoVO {
 
     @Override
     public String toString() {
-        return "ProdutoVO{" + "idProduto=" + idProduto + ", preco=" + preco + ", nomeProduto=" + nomeProduto + ", caracteristicas=" + caracteristicas  + ", idCategoria=" + idCategoria + '}';
+        return "ProdutoVO{" + "idProduto=" + idProduto + ", preco=" + preco + ", nomeProduto=" + nomeProduto + ", caracteristicas=" + caracteristicas + ", nomeCategoria=" + nomeCategoria + ", idCategoria=" + idCategoria + '}';
     }
 
 }

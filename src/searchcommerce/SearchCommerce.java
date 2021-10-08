@@ -6,11 +6,14 @@
 package searchcommerce;
 
 import dao.LoginDAO;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.loginVO;
 import services.loginServices;
+import view.JfLogin;
 
 /**
  *
@@ -24,20 +27,10 @@ public class SearchCommerce {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            Scanner scan = new Scanner(System.in);
-            loginVO lVO = new loginVO();
-            
-            System.out.println("usuario");
-            lVO.setUsuario(scan.nextLine());
-            System.out.println("senha");
-            lVO.setSenha(scan.nextLine());
-            
-            System.out.println(lVO.getUsuario());
-            System.out.println(lVO.getSenha());
-            scan.nextLine();
-        } catch (Exception ex) {
-            Logger.getLogger(SearchCommerce.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JfLogin login = new JfLogin();
+        login.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        login.setBounds((screenSize.width / 2 - 500 / 2), (screenSize.height / 2 - 500 / 2), 500, 500);
+        
     }
 }

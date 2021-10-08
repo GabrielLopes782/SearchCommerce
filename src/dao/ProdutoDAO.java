@@ -58,28 +58,22 @@ public class ProdutoDAO {
     public ArrayList<ProdutoVO> buscarProdutos() throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-        
+
         CategoriaDAO cDAO = dao.DAOFactory.getCategoriaDAO();
         ArrayList<ProdutoVO> retornaProduto = new ArrayList<>();
         try {
             String sqlProduto;
             sqlProduto = "select * from tb_produto";
             ResultSet rs = stat.executeQuery(sqlProduto);
-            
-            while (rs.next()) {
-                ProdutoVO pVO = new ProdutoVO();
-                pVO.setIdProduto(rs.getInt("id_produto"));
-                pVO.setNomeProduto(rs.getString("nomeProduto"));
-                pVO.setCaracteristicas(rs.getString("caracteristicas"));
-                pVO.setPreco(rs.getFloat("preco"));
-                pVO.setNomeCategoria(cDAO.retornaCategoria(rs.getInt("id_categoria")));
-                pVO.setIdCategoria(rs.getInt("id_categoria"));
 
-                System.out.println(pVO.getProdutos());
+            while (rs.next()) {
+                ProdutoVO pVO = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"),
+                        rs.getString("caracteristicas"), cDAO.retornaCategoria(rs.getInt("id_categoria")), rs.getInt("id_categoria"));
+                
                 retornaProduto.add(pVO);
             }
             return retornaProduto;
-            
+
         } catch (SQLException e) {
             throw new SQLException("Erro ao buscar Produto" + e.getMessage());
         } finally {
@@ -91,13 +85,13 @@ public class ProdutoDAO {
     public void DeletarProdutos(int idProduto) throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-        
+
         try {
-            
+
             String sql;
             sql = "delete from tb_produto where id_produto=" + idProduto;
             stat.execute(sql);
-            
+
         } catch (SQLException ex) {
             throw new SQLException("Erro ao deletar Produto" + ex.getMessage());
         } finally {
@@ -109,16 +103,16 @@ public class ProdutoDAO {
     public void alterarProduto(ProdutoVO pVO) throws SQLException {
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-        
+
         try {
-            
+
             String sql = "update tb_produto set"
                     + "nomeProduto'" + pVO.getNomeProduto() + "','"
                     + "preco'" + pVO.getPreco() + "',"
                     + "caracteristicas" + pVO.getCaracteristicas() + "' "
                     + "where id_produto=" + pVO.getIdCategoria() + " ";
             stat.executeUpdate(sql);
-            
+
         } catch (SQLException se) {
             throw new SQLException("Erro ao Alterar o Produto!" + se.getMessage());
         } finally {
@@ -131,15 +125,79 @@ public class ProdutoDAO {
         ArrayList<ProdutoVO> Produto = new ArrayList<>();
         Connection con = Conexao.getConexao();
         Statement stat = con.createStatement();
-        
-        try {
+        CategoriaDAO cDAO = new CategoriaDAO();
 
-            String sql = "select * from tb_produto where nomeProduto like '% " + nome + "%'";
+        try {
+            String sql = "select * from tb_produto where nomeProduto like '%" + nome + "%'";
             ResultSet rs = stat.executeQuery(sql);
 
             while (rs.next()) {
-                ProdutoVO prod = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"), rs.getString("caracteristicas"), rs.getInt("id_categoria"));
-                Produto.add(prod);
+                ProdutoVO pVO = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"),
+                        rs.getString("caracteristicas"), cDAO.retornaCategoria(rs.getInt("id_categoria")), rs.getInt("id_categoria"));
+
+                Produto.add(pVO);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.close();
+            stat.close();
+        }
+        return Produto;
+    }
+
+    public ArrayList<ProdutoVO> filtraProdutoCB(int idCategoria) throws SQLException {
+        ArrayList<ProdutoVO> Produto = new ArrayList<>();
+        Connection con = Conexao.getConexao();
+        Statement stat = con.createStatement();
+        CategoriaDAO cDAO = new CategoriaDAO();
+
+        try {
+            String sql = "select * from tb_produto where id_categoria = " + idCategoria;
+            ResultSet rs = stat.executeQuery(sql);
+//            while(rs.next()){
+//                System.out.println(rs.getString("nomeProduto"));;
+//            }
+            
+            while (rs.next()) {
+                ProdutoVO pVO = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"),
+                        rs.getString("caracteristicas"), cDAO.retornaCategoria(rs.getInt("id_categoria")), rs.getInt("id_categoria"));
+//                System.out.println(pVO);
+                Produto.add(pVO);
+//                System.out.println(Produto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.close();
+            stat.close();
+        }
+        return Produto;
+    }
+
+    public ArrayList<ProdutoVO> filtraProdutoNomeCB(String nome, int idCategoria) throws SQLException {
+        ArrayList<ProdutoVO> Produto = new ArrayList<>();
+        ArrayList<ProdutoVO> Aux = new ArrayList<>();
+        
+        Connection con = Conexao.getConexao();
+        Statement stat = con.createStatement();
+        CategoriaDAO cDAO = new CategoriaDAO();
+
+        try {
+            String sql = "select * from tb_produto where nomeProduto like '%" + nome + "%'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            while (rs.next()) {
+                ProdutoVO pVO = new ProdutoVO(rs.getInt("id_produto"), rs.getFloat("preco"), rs.getString("nomeProduto"),
+                        rs.getString("caracteristicas"), cDAO.retornaCategoria(rs.getInt("id_categoria")), rs.getInt("id_categoria"));
+
+                Aux.add(pVO);
+            }
+            
+            for(ProdutoVO produto : Aux){
+                if(produto.getIdCategoria() == idCategoria){
+                    Produto.add(produto);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
